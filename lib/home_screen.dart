@@ -52,17 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildBottomAppBar() {
-    return BottomAppBar(
-      color: Colors.transparent,
-      elevation: 0,
-      child: Text(
-        "TEST",
-        style: TextStyle(fontSize: 24),
-      ),
-    );
-  }
-
   Widget _buildBody() {
     return Column(
       children: [

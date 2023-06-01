@@ -2,6 +2,14 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+enum StateScreen {
+  MAIN_SCREEN,
+  ADD,
+  DELETE,
+  FIND,
+  DISPLAY,
+}
+
 class CustomBottomBar extends StatefulWidget {
   @override
   _CustomBottomBarState createState() => _CustomBottomBarState();
@@ -10,8 +18,12 @@ class CustomBottomBar extends StatefulWidget {
 class _CustomBottomBarState extends State<CustomBottomBar>
     with SingleTickerProviderStateMixin {
   AnimationController? _animationController;
-  bool _isExpanded = false;
-
+  static bool _isExpanded = false;
+  static bool _isAddScreen = false;
+  static bool _isRemoveScreen = false;
+  static bool _isFindScreen = false;
+  static bool _isMainScreen = true;
+  static bool _isDisplayScreen = false;
   @override
   void initState() {
     super.initState();
@@ -36,6 +48,36 @@ class _CustomBottomBarState extends State<CustomBottomBar>
         _animationController?.reverse();
       }
     });
+  }
+
+  void _setStateScreen(bool isState, StateScreen stateScreen) {
+    if (kDebugMode) {
+      print(
+          "(DEBUG_MODE) IS_MAIN_SCREEN: $_isMainScreen ~ IS_ADD_SCREEN: $_isAddScreen ~ IS_REMOVE_SCREEN: $_isRemoveScreen ~ IS_FIND_SCREEN: $_isFindScreen ~ IS_DISPLAY_SCREEN: $_isDisplayScreen");
+    }
+
+    _isAddScreen = _isDisplayScreen =
+        _isFindScreen = _isMainScreen = _isRemoveScreen = false;
+
+    switch (stateScreen) {
+      case StateScreen.MAIN_SCREEN:
+        _isMainScreen = true;
+        break;
+      case StateScreen.ADD:
+        _isAddScreen = true;
+        break;
+      case StateScreen.DELETE:
+        _isRemoveScreen = true;
+        break;
+      case StateScreen.FIND:
+        _isFindScreen = true;
+        break;
+      case StateScreen.DISPLAY:
+        _isDisplayScreen = true;
+        break;
+      default:
+        break;
+    }
   }
 
   @override
@@ -96,6 +138,17 @@ class _CustomBottomBarState extends State<CustomBottomBar>
                                 opacity: _isExpanded ? 1.0 : 0.0,
                                 duration: Duration(milliseconds: 500),
                                 child: GestureDetector(
+                                  onTap: () => {
+                                    if (!_isDisplayScreen)
+                                      {
+                                        _setStateScreen(
+                                            true, StateScreen.DISPLAY),
+                                        Navigator.pushNamedAndRemoveUntil(
+                                            context,
+                                            "/display",
+                                            (route) => false)
+                                      }
+                                  },
                                   child: Container(
                                     width: 40,
                                     height: 40,
@@ -119,6 +172,17 @@ class _CustomBottomBarState extends State<CustomBottomBar>
                                 opacity: _isExpanded ? 1.0 : 0.0,
                                 duration: Duration(milliseconds: 500),
                                 child: GestureDetector(
+                                  onTap: () => {
+                                    if (!_isRemoveScreen)
+                                      {
+                                        _setStateScreen(
+                                            true, StateScreen.DELETE),
+                                        Navigator.pushNamedAndRemoveUntil(
+                                            context,
+                                            "/remove",
+                                            (route) => false)
+                                      }
+                                  },
                                   child: Container(
                                     width: 40,
                                     height: 40,
@@ -142,6 +206,14 @@ class _CustomBottomBarState extends State<CustomBottomBar>
                                 opacity: _isExpanded ? 1.0 : 0.0,
                                 duration: Duration(milliseconds: 500),
                                 child: GestureDetector(
+                                  onTap: () => {
+                                    if (!_isAddScreen)
+                                      {
+                                        _setStateScreen(true, StateScreen.ADD),
+                                        Navigator.pushNamedAndRemoveUntil(
+                                            context, "/add", (route) => false)
+                                      }
+                                  },
                                   child: Container(
                                     width: 40,
                                     height: 40,
@@ -164,6 +236,14 @@ class _CustomBottomBarState extends State<CustomBottomBar>
                                 opacity: _isExpanded ? 1.0 : 0.0,
                                 duration: Duration(milliseconds: 500),
                                 child: GestureDetector(
+                                  onTap: () => {
+                                    if (!_isFindScreen)
+                                      {
+                                        _setStateScreen(true, StateScreen.FIND),
+                                        Navigator.pushNamedAndRemoveUntil(
+                                            context, "/find", (route) => false)
+                                      }
+                                  },
                                   child: Container(
                                     width: 40,
                                     height: 40,
@@ -186,6 +266,15 @@ class _CustomBottomBarState extends State<CustomBottomBar>
                                 opacity: _isExpanded ? 1 : 0.0,
                                 duration: Duration(seconds: 5),
                                 child: GestureDetector(
+                                  onTap: () => {
+                                    if (!_isMainScreen)
+                                      {
+                                        _setStateScreen(
+                                            true, StateScreen.MAIN_SCREEN),
+                                        Navigator.pushNamedAndRemoveUntil(
+                                            context, "/home", (route) => false)
+                                      }
+                                  },
                                   child: Container(
                                     width: 40,
                                     height: 40,
