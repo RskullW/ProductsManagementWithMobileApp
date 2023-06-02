@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:nonton_test/bottom_bar.dart';
+import 'bottom_bar.dart';
+import 'gradient_color.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'products.dart';
 
@@ -20,12 +21,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildAllBars() {
     var body = _buildBody();
     return Container(
+      decoration: GetGradientBackgroundScreen(),
       child: Scaffold(
         key: _scaffoldKey,
         body: body,
         appBar: _buildAppBar(),
-        backgroundColor: Colors.white70,
         bottomNavigationBar: CustomBottomBar(),
+        backgroundColor: Colors.transparent,
       ),
     );
   }
@@ -34,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return PreferredSize(
       preferredSize: Size.fromHeight(kToolbarHeight),
       child: AppBar(
-        backgroundColor: Colors.pink,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         automaticallyImplyLeading: false,
         title: Center(
@@ -60,13 +62,13 @@ class _HomeScreenState extends State<HomeScreen> {
           alignment: Alignment.center,
           child: Text(
             "Всего продуктов: ",
-            style: TextStyle(color: Colors.blue, fontSize: 24),
+            style: TextStyle(color: Colors.white, fontSize: 24),
           ),
         ),
         Text(
           "${Products.GetSize()}",
           style: TextStyle(
-            color: Colors.blue,
+            color: Colors.white,
             fontSize: 28,
             fontWeight: FontWeight.bold,
           ),
@@ -74,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
         SizedBox(height: 40),
         Text(
           "Информация о работе: ",
-          style: TextStyle(color: Colors.blueAccent, fontSize: 24),
+          style: TextStyle(color: Colors.white, fontSize: 24),
         ),
         SizedBox(
           height: 10,
@@ -84,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
             text:
                 "Приложение написано в качестве тестовой работы для компании ",
             style: TextStyle(
-              color: Colors.blueAccent,
+              color: Colors.white,
               fontSize: 20,
               fontStyle: FontStyle.italic,
             ),
@@ -92,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
               TextSpan(
                 text: "НОНТОН.РФ",
                 style: TextStyle(
-                  color: Colors.blueAccent,
+                  color: Colors.white,
                   fontSize: 20,
                   fontStyle: FontStyle.italic,
                   decoration: TextDecoration.underline,
@@ -114,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
           text: TextSpan(
             text: "Мой рофиль на ",
             style: TextStyle(
-              color: Colors.blueAccent,
+              color: Colors.white,
               fontSize: 20,
               fontStyle: FontStyle.italic,
             ),
@@ -122,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
               TextSpan(
                 text: "GitHub",
                 style: TextStyle(
-                  color: Colors.blueAccent,
+                  color: Colors.white,
                   fontSize: 20,
                   fontStyle: FontStyle.italic,
                   decoration: TextDecoration.underline,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nonton_test/bottom_bar.dart';
+import 'bottom_bar.dart';
+import 'gradient_color.dart';
 import 'products.dart';
 
 class AddScreen extends StatefulWidget {
@@ -63,12 +64,13 @@ class _AddScreenState extends State<AddScreen> {
   Widget _buildAllBars() {
     var body = _buildBody();
     return Container(
+      decoration: GetGradientBackgroundScreen(),
       child: Scaffold(
         key: _scaffoldKey,
         body: body,
         appBar: _buildAppBar(),
-        backgroundColor: Colors.white70,
         bottomNavigationBar: CustomBottomBar(),
+        backgroundColor: Colors.transparent,
       ),
     );
   }
@@ -81,17 +83,20 @@ class _AddScreenState extends State<AddScreen> {
         children: [
           TextField(
             controller: idController,
+            cursorColor: Colors.white,
+            style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
               labelText: 'ID',
-              labelStyle: TextStyle(color: Colors.blue, fontSize: 24),
+              labelStyle: TextStyle(color: Colors.white, fontSize: 24),
             ),
             keyboardType: TextInputType.number,
           ),
           TextField(
             controller: nameController,
+            style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
               labelText: 'Название',
-              labelStyle: TextStyle(color: Colors.blue, fontSize: 24),
+              labelStyle: TextStyle(color: Colors.white, fontSize: 24),
             ),
           ),
           SizedBox(height: 16.0),
@@ -124,7 +129,7 @@ class _AddScreenState extends State<AddScreen> {
     return PreferredSize(
       preferredSize: Size.fromHeight(kToolbarHeight),
       child: AppBar(
-        backgroundColor: Colors.pink,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         automaticallyImplyLeading: false,
         title: Center(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nonton_test/bottom_bar.dart';
-import 'package:nonton_test/products.dart';
+import 'bottom_bar.dart';
+import 'gradient_color.dart';
+import 'products.dart';
 
 class DisplayScreen extends StatelessWidget {
   final List<Product> productList = Products.getAllProducts();
@@ -8,11 +9,12 @@ class DisplayScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: GetGradientBackgroundScreen(),
       child: Scaffold(
         appBar: _buildAppBar(),
         body: _buildBody(),
-        backgroundColor: Colors.white70,
         bottomNavigationBar: CustomBottomBar(),
+        backgroundColor: Colors.transparent,
       ),
     );
   }
@@ -21,7 +23,7 @@ class DisplayScreen extends StatelessWidget {
     return PreferredSize(
       preferredSize: Size.fromHeight(kToolbarHeight),
       child: AppBar(
-        backgroundColor: Colors.pink,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         automaticallyImplyLeading: false,
         title: Center(
@@ -50,7 +52,7 @@ class DisplayScreen extends StatelessWidget {
             child: Text(
               'СПИСОК ТОВАРОВ',
               style: TextStyle(
-                color: Colors.blue,
+                color: Colors.white,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
@@ -66,8 +68,9 @@ class DisplayScreen extends StatelessWidget {
                     "${id++}. Наименование: ${productList[index].name} || ID: ${productList[index].id}",
                     style: TextStyle(
                       fontSize: 20,
-                      color: Colors.blueGrey,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic,
                     ),
                   );
                 },

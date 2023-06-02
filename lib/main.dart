@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:nonton_test/add_screen.dart';
-import 'package:nonton_test/display_screen.dart';
-import 'package:nonton_test/find_screen.dart';
-import 'package:nonton_test/home_screen.dart';
-import 'package:nonton_test/products.dart';
-import 'package:nonton_test/remove_screen.dart';
+import 'add_screen.dart';
+import 'display_screen.dart';
+import 'find_screen.dart';
+import 'home_screen.dart';
+import 'remove_screen.dart';
+import 'splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       home: MediaQuery(
         data: MediaQueryData(),
-        child: HomeScreen(),
+        child: SplashScreen(),
       ),
       routes: {
         '/home': (context) => HomeScreen(),

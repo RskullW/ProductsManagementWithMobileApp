@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nonton_test/bottom_bar.dart';
-import 'package:nonton_test/products.dart';
+import 'bottom_bar.dart';
+import 'gradient_color.dart';
+import 'products.dart';
 
 class RemoveScreen extends StatefulWidget {
   @override
@@ -51,12 +52,13 @@ class _RemoveScreenState extends State<RemoveScreen> {
   Widget _buildAllBars() {
     var body = _buildBody();
     return Container(
+      decoration: GetGradientBackgroundScreen(),
       child: Scaffold(
         key: _scaffoldKey,
         body: body,
         appBar: _buildAppBar(),
-        backgroundColor: Colors.white70,
         bottomNavigationBar: CustomBottomBar(),
+        backgroundColor: Colors.transparent,
       ),
     );
   }
@@ -69,9 +71,10 @@ class _RemoveScreenState extends State<RemoveScreen> {
         children: [
           TextField(
             controller: idController,
+            style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
               labelText: 'ID',
-              labelStyle: TextStyle(color: Colors.blue, fontSize: 24),
+              labelStyle: TextStyle(color: Colors.white, fontSize: 24),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -105,7 +108,7 @@ class _RemoveScreenState extends State<RemoveScreen> {
     return PreferredSize(
       preferredSize: Size.fromHeight(kToolbarHeight),
       child: AppBar(
-        backgroundColor: Colors.pink,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         automaticallyImplyLeading: false,
         title: Center(

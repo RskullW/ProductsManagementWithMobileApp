@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nonton_test/bottom_bar.dart';
-import 'package:nonton_test/products.dart';
+import 'bottom_bar.dart';
+import 'gradient_color.dart';
+import 'products.dart';
 
 class FindScreen extends StatefulWidget {
   @override
@@ -54,12 +55,13 @@ class _FindScreenState extends State<FindScreen> {
   Widget _buildAllBars() {
     var body = _buildBody();
     return Container(
+      decoration: GetGradientBackgroundScreen(),
       child: Scaffold(
         key: _scaffoldKey,
         body: body,
         appBar: _buildAppBar(),
-        backgroundColor: Colors.white70,
         bottomNavigationBar: CustomBottomBar(),
+        backgroundColor: Colors.transparent,
       ),
     );
   }
@@ -74,9 +76,10 @@ class _FindScreenState extends State<FindScreen> {
         children: [
           TextField(
             controller: nameController,
+            style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
               labelText: 'Название',
-              labelStyle: TextStyle(color: Colors.blue, fontSize: 24),
+              labelStyle: TextStyle(color: Colors.white, fontSize: 24),
             ),
           ),
           SizedBox(height: 16.0),
@@ -102,11 +105,21 @@ class _FindScreenState extends State<FindScreen> {
           ),
           SizedBox(height: 8.0),
           if (idList.isNotEmpty)
+            Container(
+              height: 1.0,
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.35),
+              ),
+            ),
+          SizedBox(
+            height: 10,
+          ),
+          if (idList.isNotEmpty)
             Center(
               child: Text(
                 'СПИСОК',
                 style: TextStyle(
-                  color: Colors.blue,
+                  color: Colors.white,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
@@ -125,8 +138,9 @@ class _FindScreenState extends State<FindScreen> {
                       idList[index].id,
                   style: TextStyle(
                     fontSize: 20,
-                    color: Colors.blueGrey,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
                   ),
                 );
               },
@@ -141,7 +155,7 @@ class _FindScreenState extends State<FindScreen> {
     return PreferredSize(
       preferredSize: Size.fromHeight(kToolbarHeight),
       child: AppBar(
-        backgroundColor: Colors.pink,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         automaticallyImplyLeading: false,
         title: Center(
