@@ -36,14 +36,14 @@ class ProductsImpl {
     return product.name;
   }
 
-  List<String> findByName(String name) {
-    List<String> idList = [];
+  List<Product> findByName(String name) {
+    List<Product> list = [];
     _productList.forEach((product) {
       if (product.name == name) {
-        idList.add(product.id);
+        list.add(product);
       }
     });
-    return idList;
+    return list;
   }
 }
 
@@ -62,7 +62,7 @@ class Products {
     return _productsImpl.getName(id);
   }
 
-  static List<String> FindByName(String name) {
+  static List<Product> FindByName(String name) {
     return _productsImpl.findByName(name);
   }
 
