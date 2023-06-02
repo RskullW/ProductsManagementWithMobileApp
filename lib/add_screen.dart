@@ -12,8 +12,8 @@ class _AddScreenState extends State<AddScreen> {
 
   TextEditingController idController = TextEditingController();
   TextEditingController nameController = TextEditingController();
-  String errorMessage = "";
   Color colorMessage = Colors.red;
+  String errorMessage = "";
 
   void addProduct() {
     String id = idController.text;

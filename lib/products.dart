@@ -18,8 +18,16 @@ class ProductsImpl {
   }
 
   bool deleteProduct(Product product) {
-    bool isRemoved = _productList.remove(product);
-    return isRemoved;
+    String id = product.id;
+
+    for (int i = 0; i < _productList.length; i++) {
+      if (_productList[i].id == id) {
+        _productList.removeAt(i);
+        return true;
+      }
+    }
+
+    return false;
   }
 
   String getName(String id) {
