@@ -69,4 +69,8 @@ class Products {
   static int GetSize() {
     return _productsImpl._productList.length;
   }
+
+  static List<Product> getAllProducts() {
+    return _productsImpl._productList;
+  }
 }

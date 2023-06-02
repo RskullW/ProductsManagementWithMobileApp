@@ -65,6 +65,8 @@ class _FindScreenState extends State<FindScreen> {
   }
 
   Widget _buildBody() {
+    int id = 1;
+
     return Padding(
       padding: EdgeInsets.all(16.0),
       child: Column(
@@ -117,9 +119,9 @@ class _FindScreenState extends State<FindScreen> {
               itemCount: idList.length,
               itemBuilder: (context, index) {
                 return Text(
-                  "Наименование: " +
+                  "${id++}. Наименование: " +
                       idList[index].name +
-                      " ID: " +
+                      " || ID: " +
                       idList[index].id,
                   style: TextStyle(
                     fontSize: 20,
