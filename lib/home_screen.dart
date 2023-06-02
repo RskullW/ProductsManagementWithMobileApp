@@ -81,63 +81,70 @@ class _HomeScreenState extends State<HomeScreen> {
         SizedBox(
           height: 10,
         ),
-        RichText(
-          text: TextSpan(
-            text:
-                "Приложение написано в качестве тестовой работы для компании ",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontStyle: FontStyle.italic,
-            ),
-            children: [
-              TextSpan(
-                text: "НОНТОН.РФ",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontStyle: FontStyle.italic,
-                  decoration: TextDecoration.underline,
-                  fontWeight: FontWeight.bold,
-                ),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () async {
-                    _launchSite("nonton.ru", path: "");
-                  },
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          child: RichText(
+            text: TextSpan(
+              text:
+                  "Приложение написано в качестве тестовой работы для компании ",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontStyle: FontStyle.italic,
               ),
-            ],
+              children: [
+                TextSpan(
+                  text: "НОНТОН.РФ",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontStyle: FontStyle.italic,
+                    decoration: TextDecoration.underline,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () async {
+                      _launchSite("nonton.ru", path: "");
+                    },
+                ),
+              ],
+            ),
+            textAlign: TextAlign.justify,
           ),
-          textAlign: TextAlign.justify,
         ),
         SizedBox(
           height: 5,
         ),
-        RichText(
-          text: TextSpan(
-            text: "Мой рофиль на ",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontStyle: FontStyle.italic,
-            ),
-            children: [
-              TextSpan(
-                text: "GitHub",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontStyle: FontStyle.italic,
-                  decoration: TextDecoration.underline,
-                  fontWeight: FontWeight.bold,
-                ),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () async {
-                    _launchSite("github.com", path: "RskullW");
-                  },
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          child: RichText(
+            text: TextSpan(
+              text: "Мой профиль на ",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontStyle: FontStyle.italic,
               ),
-            ],
+              children: [
+                TextSpan(
+                  text:
+                      "GitHub                                                                                  ",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontStyle: FontStyle.italic,
+                    decoration: TextDecoration.underline,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () async {
+                      _launchSite("github.com", path: "RskullW");
+                    },
+                ),
+              ],
+            ),
+            textAlign: TextAlign.left,
           ),
-          textAlign: TextAlign.justify,
         ),
         SizedBox(
           width: 5,
