@@ -4,7 +4,7 @@ import 'gradient_color.dart';
 import 'products.dart';
 
 class DisplayScreen extends StatelessWidget {
-  final List<Product> productList = Products.getAllProducts();
+  final _productMap = Products.GetAllProducts();
 
   @override
   Widget build(BuildContext context) {
@@ -59,13 +59,16 @@ class DisplayScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 8.0),
-          if (productList.isNotEmpty)
+          if (_productMap.isNotEmpty)
             Expanded(
               child: ListView.builder(
-                itemCount: productList.length,
+                itemCount: _productMap.length,
                 itemBuilder: (context, index) {
+                  final productId = _productMap.keys.elementAt(index);
+                  final product = _productMap[productId];
+
                   return Text(
-                    "${id++}. Наименование: ${productList[index].name} || ID: ${productList[index].id}",
+                    "${index + 1}. Наименование: ${product?.name ?? ""} || ID: ${product?.id ?? ""}",
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -76,7 +79,7 @@ class DisplayScreen extends StatelessWidget {
                 },
               ),
             ),
-          if (productList.isEmpty)
+          if (_productMap.isEmpty)
             Column(
               children: [
                 SizedBox(

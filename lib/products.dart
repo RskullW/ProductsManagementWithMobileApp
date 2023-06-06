@@ -6,39 +6,30 @@ class Product {
 }
 
 class ProductsImpl {
-  List<Product> _productList = [];
+  Map<String, Product> _productMap = {};
 
   ProductsImpl() {}
-  bool addProduct(Product product) {
-    bool isIdUnique = !_productList.any((p) => p.id == product.id);
+
+  bool AddProduct(Product product) {
+    bool isIdUnique = !_productMap.containsKey(product.id);
     if (isIdUnique) {
-      _productList.add(product);
+      _productMap[product.id] = product;
     }
     return isIdUnique;
   }
 
-  bool deleteProduct(Product product) {
-    String id = product.id;
-
-    for (int i = 0; i < _productList.length; i++) {
-      if (_productList[i].id == id) {
-        _productList.removeAt(i);
-        return true;
-      }
-    }
-
-    return false;
+  bool DeleteProduct(Product product) {
+    return _productMap.remove(product.id) != null;
   }
 
-  String getName(String id) {
-    Product? product = _productList.firstWhere((p) => p.id == id,
-        orElse: () => Product("", ""));
-    return product.name;
+  String GetName(String id) {
+    Product? product = _productMap[id];
+    return product?.name ?? "";
   }
 
-  List<Product> findByName(String name) {
+  List<Product> FindByName(String name) {
     List<Product> list = [];
-    _productList.forEach((product) {
+    _productMap.values.forEach((product) {
       if (product.name == name) {
         list.add(product);
       }
@@ -51,26 +42,26 @@ class Products {
   static ProductsImpl _productsImpl = ProductsImpl();
 
   static bool AddProduct(Product product) {
-    return _productsImpl.addProduct(product);
+    return _productsImpl.AddProduct(product);
   }
 
   static bool DeleteProduct(Product product) {
-    return _productsImpl.deleteProduct(product);
+    return _productsImpl.DeleteProduct(product);
   }
 
   static String GetName(String id) {
-    return _productsImpl.getName(id);
+    return _productsImpl.GetName(id);
   }
 
   static List<Product> FindByName(String name) {
-    return _productsImpl.findByName(name);
+    return _productsImpl.FindByName(name);
   }
 
   static int GetSize() {
-    return _productsImpl._productList.length;
+    return _productsImpl._productMap.length;
   }
 
-  static List<Product> getAllProducts() {
-    return _productsImpl._productList;
+  static Map<String, Product> GetAllProducts() {
+    return _productsImpl._productMap;
   }
 }

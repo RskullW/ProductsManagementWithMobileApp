@@ -13,7 +13,7 @@ class _FindScreenState extends State<FindScreen> {
 
   TextEditingController nameController = TextEditingController();
   Color colorMessage = Colors.red;
-  List<Product> idList = [];
+  Map<String, Product> productMap = {};
   String errorMessage = "";
 
   void findProducts() {
@@ -24,24 +24,29 @@ class _FindScreenState extends State<FindScreen> {
         errorMessage = "Название продукта не задано";
         colorMessage = Colors.red;
         nameController.clear();
-        idList.clear();
+        productMap.clear();
       });
       return;
     }
 
-    idList = Products.FindByName(name);
+    List<Product> productList = Products.FindByName(name);
+    productMap = Map.fromIterable(
+      productList,
+      key: (product) => product.id,
+      value: (product) => product,
+    );
 
-    if (idList.isEmpty) {
+    if (productMap.isEmpty) {
       setState(() {
         errorMessage = "Продуктов с таким названием не найдено!";
         colorMessage = Colors.red;
         nameController.clear();
       });
-
       return;
     }
+
     setState(() {
-      errorMessage = "Найдено " + idList.length.toString() + " позиции(-й)!";
+      errorMessage = "Найдено ${productMap.length} позиции(-й)!";
       colorMessage = Colors.green;
       nameController.clear();
     });
@@ -104,7 +109,7 @@ class _FindScreenState extends State<FindScreen> {
             ),
           ),
           SizedBox(height: 8.0),
-          if (idList.isNotEmpty)
+          if (productMap.isNotEmpty)
             Container(
               height: 1.0,
               decoration: BoxDecoration(
@@ -114,7 +119,7 @@ class _FindScreenState extends State<FindScreen> {
           SizedBox(
             height: 10,
           ),
-          if (idList.isNotEmpty)
+          if (productMap.isNotEmpty)
             Center(
               child: Text(
                 'СПИСОК',
@@ -129,13 +134,12 @@ class _FindScreenState extends State<FindScreen> {
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: idList.length,
+              itemCount: productMap.length,
               itemBuilder: (context, index) {
+                final productId = productMap.keys.elementAt(index);
+                final product = productMap[productId];
                 return Text(
-                  "${id++}. Наименование: " +
-                      idList[index].name +
-                      " || ID: " +
-                      idList[index].id,
+                  "${id++}. Наименование: ${product?.name ?? ""} || ID: ${product?.id ?? ""}",
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
